@@ -3,6 +3,7 @@
 #include <Windows.h>
 #include <ctime>
 #include <stdio.h>
+#include <allegro5\allegro_image.h>
 #include <allegro5/allegro.h>
 using namespace std;
 int room = 1;//room that you spawn in
@@ -16,21 +17,23 @@ int main() {
 	al_init();
 
 	ALLEGRO_DISPLAY *display = NULL;
+	ALLEGRO_BITMAP*image = NULL;
+
 
 
 
 
 	display = al_create_display(640, 480);
-
-
+	al_init_image_addon();
+	image = al_create_bitmap(640, 480);
 
 	al_clear_to_color(al_map_rgb(0, 0, 0));
 
-	al_flip_display();
+	//al_flip_display();
 
-	al_rest(10.0);
+	//al_rest(10.0);
 
-	al_destroy_display(display);
+	//al_destroy_display(display);
 
 
 
@@ -38,8 +41,16 @@ int main() {
 	string input = "a";
 	string option;
 	while (input != "quit" && health >= 0) {
-		switch (room) {
+		switch (room) {//photos
+		
+		case 1: 
+				image = al_load_bitmap(" jpg");
+				break;
+
+			}
+		switch (room) {//start of your game rooms
 		case 1:
+
 			
 			cout << "you are in a room with nothing but yourself, you have two doors in front of you." << endl;
 			cout << "You can go south and east" << endl;

@@ -6,13 +6,18 @@ int main(int argc, char **argv) {
 	ALLEGRO_EVENT_QUEUE *event_queue = NULL;
 	ALLEGRO_TIMER *timer = NULL;
 	ALLEGRO_BITMAP *bouncer = NULL;
+	ALLEGRO_BITMAP *bouncer2 = NULL;
 
 	//here's the bouncer's x and y coordinates on the screen, initally set to 30,30
 	float bouncer_x = 30;
 	float bouncer_y = 30;
 
+	float bouncer2_x = 30;
+	float bouncer2_y = 30;
+
 	//here's the bouncer's x and y directions, initially set to -4, 4
 	float bouncer_dx = -4.0, bouncer_dy = 4.0;
+	float bouncer2_dx = -5.0, bouncer2_dy = 5.0;
 	bool redraw = true;
 
 	al_init();
@@ -24,12 +29,15 @@ int main(int argc, char **argv) {
 
 	//create a little 32x32 square
 	bouncer = al_create_bitmap(32, 32);
+	bouncer2 = al_create_bitmap(32, 32);
 
 	//use this to *draw* your own bitmaps (instead of loading them from a file)
 	//before we used al_load_bitmap()
 	al_set_target_bitmap(bouncer);
-
-	//set the color of your bitmap
+	al_clear_to_color(al_map_rgb(255, 200, 100));
+	
+	
+	al_set_target_bitmap(bouncer2);
 	al_clear_to_color(al_map_rgb(255, 100, 100));
 
 	al_set_target_bitmap(al_get_backbuffer(display));
@@ -41,7 +49,7 @@ int main(int argc, char **argv) {
 	//register the timer as an event source so it can generate events
 	al_register_event_source(event_queue, al_get_timer_event_source(timer));
 
-	al_clear_to_color(al_map_rgb(0, 0, 0));
+	//al_clear_to_color(al_map_rgb(0, 0, 0));
 
 	al_flip_display();
 
@@ -64,16 +72,30 @@ int main(int argc, char **argv) {
 				//flip the x direction
 				bouncer_dx = -bouncer_dx;
 			}
-			//if the box hits the top wall OR the bottom wall
-			if (bouncer_y < 0 || bouncer_y > 480 - 32) {
-				//flip the y direction
-				bouncer_dy = -bouncer_dy;
-			}
+		
+		//if the box hits the top wall OR the bottom wall
+		if (bouncer_y < 0 || bouncer_y > 480 - 32) {
+			//flip the y direction
+			bouncer_dy = -bouncer_dy;
+		}
+		
+		
 
+		if (bouncer2_x < 0 || bouncer2_x > 640 - 32) {
+			//flip the x direction
+			bouncer2_dx = -bouncer2_dx;
+
+			if (bouncer2_y < 0 || bouncer2_y > 480 - 32) {
+				//flip the y direction
+				bouncer2_dy = -bouncer2_dy;
+			}
+		}
 			//really important code!
 			//move the box in a diagonal
 			bouncer_x += bouncer_dx;
 			bouncer_y += bouncer_dy;
+			bouncer2_x += bouncer2_dx;//look for a mistake here!!!
+			bouncer2_y += bouncer2_dy;
 
 			//if an event happened, you better redraw
 			redraw = true;
@@ -94,7 +116,7 @@ int main(int argc, char **argv) {
 			//here's where the magic happens: draw the square to the screen
 			//at the coordinate position bouncer_x, bouncer_y
 			al_draw_bitmap(bouncer, bouncer_x, bouncer_y, 0);
-
+			al_draw_bitmap(bouncer2, bouncer2_x, bouncer2_y, 0);
 			al_flip_display();
 		}
 	}//end game loop

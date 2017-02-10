@@ -3,8 +3,9 @@
 #include <Windows.h>
 #include <ctime>
 #include <stdio.h>
-#include <allegro5\allegro_image.h>
+
 #include <allegro5/allegro.h>
+#include <allegro5/allegro_image.h>
 using namespace std;
 int room = 1;//room that you spawn in
 void monster();
@@ -41,13 +42,52 @@ int main() {
 	string input = "a";
 	string option;
 	while (input != "quit" && health >= 0) {
-		switch (room) {//photos
+
+
+
+
+		switch (room) {//photos///////////////////////////////////////////////////////////////////////////////
 		
 		case 1: 
-				image = al_load_bitmap("alien attack.jpg");
+				image = al_load_bitmap("alienattack.jpg");
 				break;
 
+		case 2:
+			image = al_load_bitmap("corridor.jpg");
+			break;
+
+		case 3:
+			image = al_load_bitmap("flamethrower.jpg");
+			break;
+			
+		case 4:
+			image = al_load_bitmap("flamethrower.jpg");
+			break;
+
+		case 5:
+			image = al_load_bitmap("noisemaker.jpg");
+			break;
+
+		case 6:
+			image = al_load_bitmap("radar.jpg");
+			break;
+
+		case 7:
+			image = al_load_bitmap("puzzle.jpg");
+			break;
+
+
+
 			}
+
+
+		al_draw_bitmap(image, 0, 0, NULL);
+		al_flip_display();
+
+
+
+
+		//////////////////////////////////////////////////////////////////////////////
 		switch (room) {//start of your game rooms
 		case 1:
 
@@ -68,17 +108,12 @@ int main() {
 
 			break;
 
-			if (health = 0)
+			if (health == 0) {
 				cout << "You're dead" << endl;
-			return 0;
-			
-			switch (room) {
-
-			case 2:
-				image = al_load_bitmap(" jpg");
-				break;
-
+				return 0;
 			}
+			
+		
 		case 2:
 			cout << "In room 2 you have again nothing in the room other than a terminal and a door that leads to another room. there is something on the terminal" << endl;
 			cout << "There is a door to west." << endl;
@@ -93,17 +128,14 @@ int main() {
 
 			break;
 
-			if (health = 0)
+			if (health == 0) {
 				cout << "You're dead" << endl;
-			return 0;
-
-			switch (room) {
-
-			case 3:
-				image = al_load_bitmap(" jpg");
-				break;
-
+				return 0;
 			}
+
+			
+
+			
 		case 3:
 			cout << "Nothing in this room other than blood stains on the walls put in words that are un readable" << endl;
 			cout << "Gget heelp dontt go feurtherr!" << endl;
@@ -123,17 +155,12 @@ int main() {
 
 			break;
 
-			if (health = 0)
+			if (health == 0) {
 				cout << "You're dead" << endl;
-			return 0;
-
-			switch (room) {
-
-			case 4:
-				image = al_load_bitmap(" jpg");
-				break;
-
+				return 0;
 			}
+
+		
 
 		case 4:
 			cout << "You look around to see a dead sevastopol security officer at his desk with a round jagged hole shaped wound in his chest. To the right of him is his handgun. You pick it up to find it completely loaded. A .44 magnum with exactly 6 shots." << endl;
@@ -151,17 +178,12 @@ int main() {
 
 			break;
 
-			if (health = 0)
+			if (health == 0) {
 				cout << "You're dead" << endl;
-			return 0;
-
-			switch (room) {
-
-			case 5:
-				image = al_load_bitmap(" jpg");
-				break;
-
+				return 0;
 			}
+
+		
 		case 5:
 			cout << "Nothing in this room and is oddly clean. The door to the next room is to your south." << endl;
 			cout << "You can go south." << endl;
@@ -176,17 +198,11 @@ int main() {
 
 			break;
 
-			if (health = 0)
+			if (health == 0) {
 				cout << "You're dead" << endl;
-			return 0;
-
-			switch (room) {
-
-			case 6:
-				image = al_load_bitmap(" jpg");
-				break;
-
+				return 0;
 			}
+
 		case 6:
 			cout << "Nothing in this room other than a window looking out on planet kg348. The gas giant that has an atmosphere almost identical to jupiter. You have to go back and go south to enter the next room." << endl;
 			cout << "You can only go north." << endl;
@@ -201,17 +217,12 @@ int main() {
 
 			break;
 
-			if (health = 0)
+			if (health == 0) {
 				cout << "You're dead" << endl;
-			return 0;
-
-			switch (room) {
-
-			case 7:
-				image = al_load_bitmap(" jpg");
-				break;
-
+				return 0;
 			}
+
+			
 
 		case 7:
 			cout << "You look around to see nothing but servers everywhere. You are in a server room with what looks to be like a prototype weapon or device. You pick it up to find that it is a motion detector radar. The plus side is you and the alone are alone so the alien is the only other blip you pick up. The downside is you and the alien are alone." << endl;
@@ -227,17 +238,12 @@ int main() {
 
 			break;
 
-			if (health = 0)
+			if (health == 0) {
 				cout << "You're dead" << endl;
-			return 0;
-
-			switch (room) {
-
-			case 8:
-				image = al_load_bitmap(" jpg");
-				break;
-
+				return 0;
 			}
+
+		
 
 		case 8:
 			cout << " In this room is nothing but you start to notice black liquid that looks to be sticky is starting to cave on the walls. You can't tell what it is but it is not good.." << endl;
@@ -255,17 +261,12 @@ int main() {
 
 			break;
 
-			if (health = 0)
+			if (health == 0) {
 				cout << "You're dead" << endl;
-			return 0;
-
-			switch (room) {
-
-			case 9:
-				image = al_load_bitmap(" jpg");
-				break;
-
+				return 0;
 			}
+
+		
 
 		case 9:
 			cout << "In this in this room is four dead people lying dead on the floor. Well at least we know what happened to the search team ripley was on. Thankfully i don't see ripley. That means she could be alive. Or something has happened.." << endl;
@@ -286,17 +287,12 @@ int main() {
 
 			break;
 
-			if (health = 0)
+			if (health == 0) {
 				cout << "You're dead" << endl;
-			return 0;
-
-			switch (room) {
-
-			case 10:
-				image = al_load_bitmap(" jpg");
-				break;
-
+				return 0;
 			}
+
+		
 
 		case 10:
 			cout << "In this room it looks to be before the incident happened it was a sleeping quarters for workers and space marines. On one of the bes is a drawer." << endl;
@@ -316,17 +312,11 @@ int main() {
 
 			break;
 
-			if (health = 0)
+			if (health == 0) {
 				cout << "You're dead" << endl;
-			return 0;
-
-			switch (room) {
-
-			case 11:
-				image = al_load_bitmap(" jpg");
-				break;
-
+				return 0;
 			}
+		
 
 		case 11:
 			cout << "In this room is a table. On the table is a flamethrower. You notice the entire room is covered in a black tar like substance. Almost no spots in the room are the walls original infrastructure." << endl;
@@ -346,17 +336,12 @@ int main() {
 
 			break;
 
-			if (health = 0)
+			if (health == 0) {
 				cout << "You're dead" << endl;
-			return 0;
-
-			switch (room) {
-
-			case 12:
-				image = al_load_bitmap(" jpg");
-				break;
-
+				return 0;
 			}
+
+	
 
 		case 12:
 			cout << "In this room is nothing. You have a window looking  out at the gas giant and you have a door to your left which the hall leading to that room is full of black tar like substance." << endl;
@@ -375,17 +360,12 @@ int main() {
 
 			break;
 
-			if (health = 0)
+			if (health == 0) {
 				cout << "You're dead" << endl;
-			return 0;
-
-			switch (room) {
-
-			case 13:
-				image = al_load_bitmap(" jpg");
-				break;
-
+				return 0;
 			}
+
+	
 
 		case 13:
 			cout << "In this room is nothing but the door to the next room is covered by a fiery blockade of couches and tables. Only way you can go is south." << endl;
@@ -401,17 +381,12 @@ int main() {
 
 			break;
 
-			if (health = 0)
+			if (health == 0) {
 				cout << "You're dead" << endl;
-			return 0;
-
-			switch (room) {
-
-			case 14:
-				image = al_load_bitmap(" jpg");
-				break;
-
+				return 0;
 			}
+
+	
 
 		case 14:
 			cout << "This room is covered in a black tar like substance. But now there is eggs all over the place.little alien eggs that spawn more alien lifeforms. Get out of sevastopol fast. you need to find a way to move on to the next room because you are bloked by the substance." << endl;
@@ -430,17 +405,12 @@ int main() {
 
 			break;
 
-			if (health = 0)
+			if (health == 0) {
 				cout << "You're dead" << endl;
-			return 0;
-
-			switch (room) {
-
-			case 15:
-				image = al_load_bitmap(" jpg");
-				break;
-
+				return 0;
 			}
+
+		
 
 		case 15:
 			cout << "In this room is nothing. There is a locker and desk for hiding places and there is a terminal but it is broken so nothing is on it." << endl;
@@ -459,17 +429,12 @@ int main() {
 
 			break;
 
-			if (health = 0)
+			if (health == 0) {
 				cout << "You're dead" << endl;
-			return 0;
-
-			switch (room) {
-
-			case 16:
-				image = al_load_bitmap(" jpg");
-				break;
-
+				return 0;
 			}
+
+		
 
 		case 16:
 			cout << "In this room on the walls spells out “as the crew sleeps” carved into the metal by some sort of knife or sharp object." << endl;
@@ -486,17 +451,12 @@ int main() {
 
 			break;
 
-			if (health = 0)
+			if (health == 0) {
 				cout << "You're dead" << endl;
-			return 0;
-
-			switch (room) {
-
-			case 17:
-				image = al_load_bitmap(" jpg");
-				break;
-
+				return 0;
 			}
+
+	
 
 		case 17:
 			cout << "In this room is nothing but a window looking out at the station’s top side. The door to the next room is locked. Fire a shot and hide fast there is no other way around it." << endl;
@@ -514,17 +474,12 @@ int main() {
 
 			break;
 
-			if (health = 0)
+			if (health == 0) {
 				cout << "You're dead" << endl;
-			return 0;
-
-			switch (room) {
-
-			case 18:
-				image = al_load_bitmap(" jpg");
-				break;
-
+				return 0;
 			}
+
+	
 
 		case 18:
 			cout << "You are in a sort of boiler\engine room.in this room is a body. Specifically female. You get closer to search the body for loot and you notice...it’s ripley she has a big gaushe in her chest that has tore through her bones and has entered her body from her back." << endl;
@@ -543,17 +498,12 @@ int main() {
 
 			break;
 
-			if (health = 0)
+			if (health == 0) {
 				cout << "You're dead" << endl;
-			return 0;
-
-			switch (room) {
-
-			case 19:
-				image = al_load_bitmap(" jpg");
-				break;
-
+				return 0;
 			}
+
+	
 
 		case 19:
 			cout << "This seems to be some sort of control room. On the computer is numbers and they seem to be lowering fast. “30:30:17” you have 30 minutes to escape...someone has pushed the self destruct." << endl;
@@ -571,17 +521,11 @@ int main() {
 
 			break;
 
-			if (health = 0)
+			if (health == 0) {
 				cout << "You're dead" << endl;
-			return 0;
-
-			switch (room) {
-
-			case 20:
-				image = al_load_bitmap(" jpg");
-				break;
-
+				return 0;
 			}
+
 
 		case 20:
 			cout << "This room is full of blockage and things like tables and mattresses i guess it was in an effort to block the alien out of the room they were in. obviously that didn't work." << endl;
@@ -598,17 +542,12 @@ int main() {
 
 			break;
 
-			if (health = 0)//allows you to die and then return to start
+			if (health == 0) {
 				cout << "You're dead" << endl;
-			return 0;
-
-			switch (room) {
-
-			case 21:
-				image = al_load_bitmap(" jpg");
-				break;
-
+				return 0;
 			}
+
+
 
 		case 21:
 			cout << "A locker and desk is in this room incase you need to hide. Otherwise there is nothing. There is a window looking out at the gas giant and sevastopol station." << endl;
@@ -625,12 +564,9 @@ int main() {
 
 			break;
 
-			switch (room) {
-
-			case 22:
-				image = al_load_bitmap(" jpg");
-				break;
-
+			if (health == 0) {
+				cout << "You're dead" << endl;
+				return 0;
 			}
 
 		case 22:
@@ -648,17 +584,11 @@ int main() {
 
 			break;
 
-			if (health = 0)
+			if (health == 0) {
 				cout << "You're dead" << endl;
-			return 0;
-
-			switch (room) {
-
-			case 23:
-				image = al_load_bitmap(" jpg");
-				break;
-
+				return 0;
 			}
+
 
 		case 23:
 			cout << "You find the survivors and get on the ship. As you fly away you watch as sevastopol goes up into a blazing ball of fire. You have failed to bring ripley back alive. But you have survived. And are going home." << endl;

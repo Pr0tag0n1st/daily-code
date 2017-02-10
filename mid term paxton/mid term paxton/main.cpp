@@ -76,7 +76,69 @@ int main() {
 			image = al_load_bitmap("puzzle.jpg");
 			break;
 
+		case 8:
+			image = al_load_bitmap("header.jpg");
+			break;
 
+		case 9:
+			image = al_load_bitmap("newspaper.jpg");
+			break;
+
+		case 10:
+			image = al_load_bitmap("robot.jpg");
+			break;
+
+		case 11:
+			image = al_load_bitmap("creepyalien.jpg");
+			break;
+
+		case 12:
+			image = al_load_bitmap("pewdiepie.jpg");
+			break;
+
+		case 13:
+			image = al_load_bitmap("flamethrower2.jpg");
+			break;
+
+		case 14:
+			image = al_load_bitmap("slimealien.jpg");
+			break;
+
+		case 15:
+			image = al_load_bitmap("alienspaceship.jpg");
+			break;
+
+		case 16:
+			image = al_load_bitmap("friendlyalien.jpg");
+			break;
+
+		case 17:
+			image = al_load_bitmap("creepyalien.jpg");
+			break;
+
+		case 18:
+			image = al_load_bitmap("handgun.jpg");
+			break;
+
+		case 19:
+			image = al_load_bitmap("spaceship.jpg");
+			break;
+
+		case 20:
+			image = al_load_bitmap("oldhallway.jpg");
+			break;
+
+		case 21:
+			image = al_load_bitmap("deathhallway.jpg");
+			break;
+
+		case 22:
+			image = al_load_bitmap("hellno.jpg");
+			break;
+
+		case 23:
+			image = al_load_bitmap("freedom.jpg");
+			break;
 
 			}
 
@@ -139,7 +201,7 @@ int main() {
 		case 3:
 			cout << "Nothing in this room other than blood stains on the walls put in words that are un readable" << endl;
 			cout << "Gget heelp dontt go feurtherr!" << endl;
-			cout << "The only way is a door to the north, you can head back into room 2 to the east." << endl;
+			cout << "The only way is a door south of you, you can head back into room 2 to the east." << endl;
 			getline(cin, input);//used for input by user
 			cout << endl;
 			monster();
@@ -211,7 +273,7 @@ int main() {
 			monster();
 
 			if (input.compare("north") == 0 || input.compare("e") == 0)
-				room = 4;
+				room = 7;
 			else
 				cout << "Invalid input" << endl;
 

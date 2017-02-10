@@ -12,8 +12,8 @@ int main(int argc, char **argv) {
 	float bouncer_x = 30;
 	float bouncer_y = 30;
 
-	float bouncer2_x = 30;
-	float bouncer2_y = 30;
+	float bouncer2_x = 80;
+	float bouncer2_y = 80;
 
 	//here's the bouncer's x and y directions, initially set to -4, 4
 	float bouncer_dx = -4.0, bouncer_dy = 4.0;
@@ -38,7 +38,7 @@ int main(int argc, char **argv) {
 	
 	
 	al_set_target_bitmap(bouncer2);
-	al_clear_to_color(al_map_rgb(255, 100, 100));
+	al_clear_to_color(al_map_rgb(255, 150, 100));
 
 	al_set_target_bitmap(al_get_backbuffer(display));
 
@@ -72,34 +72,31 @@ int main(int argc, char **argv) {
 				//flip the x direction
 				bouncer_dx = -bouncer_dx;
 			}
-		
-		//if the box hits the top wall OR the bottom wall
-		if (bouncer_y < 0 || bouncer_y > 480 - 32) {
-			//flip the y direction
-			bouncer_dy = -bouncer_dy;
-		}
-		
-		
+
+			if (bouncer_y < 0 || bouncer_y > 480 - 32) {
+
+				bouncer_dy = -bouncer_dy;
+
+			}
 
 		if (bouncer2_x < 0 || bouncer2_x > 640 - 32) {
-			//flip the x direction
 			bouncer2_dx = -bouncer2_dx;
 
-			if (bouncer2_y < 0 || bouncer2_y > 480 - 32) {
-				//flip the y direction
-				bouncer2_dy = -bouncer2_dy;
-			}
 		}
-			//really important code!
-			//move the box in a diagonal
-			bouncer_x += bouncer_dx;
-			bouncer_y += bouncer_dy;
-			bouncer2_x += bouncer2_dx;//look for a mistake here!!!
-			bouncer2_y += bouncer2_dy;
+		if (bouncer2_y < 0 || bouncer2_y > 480 - 32) {
+			bouncer2_dy = -bouncer2_dy;
+		}
 
-			//if an event happened, you better redraw
-			redraw = true;
-		}
+		//really important code!
+		//move the box in a diagonal
+		bouncer_x += bouncer_dx;
+		bouncer_y += bouncer_dy;
+		bouncer2_x += bouncer2_dx;
+		bouncer2_y += bouncer2_dy;
+
+		//if an event happened, you better redraw
+		redraw = true;
+	}
 
 		//////////////////////////////////////////////////////////////////
 		//kill program if the user clicks the exit button
@@ -110,7 +107,7 @@ int main(int argc, char **argv) {
 		//if you were supposed to redraw but there wasn't an event, don't redraw
 		if (redraw && al_is_event_queue_empty(event_queue)) {
 			redraw = false;
-
+		}
 			al_clear_to_color(al_map_rgb(0, 0, 0));
 
 			//here's where the magic happens: draw the square to the screen
@@ -118,7 +115,7 @@ int main(int argc, char **argv) {
 			al_draw_bitmap(bouncer, bouncer_x, bouncer_y, 0);
 			al_draw_bitmap(bouncer2, bouncer2_x, bouncer2_y, 0);
 			al_flip_display();
-		}
+		
 	}//end game loop
 
 	al_destroy_bitmap(bouncer);

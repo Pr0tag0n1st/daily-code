@@ -35,8 +35,8 @@ int main(int argc, char **argv) {
 	//before we used al_load_bitmap()
 	al_set_target_bitmap(bouncer);
 	al_clear_to_color(al_map_rgb(255, 200, 100));
-	
-	
+
+
 	al_set_target_bitmap(bouncer2);
 	al_clear_to_color(al_map_rgb(255, 150, 100));
 
@@ -56,6 +56,30 @@ int main(int argc, char **argv) {
 	//GUESS WHAT THIS DOES
 	al_start_timer(timer);
 
+	else if (ev.type == ALLEGRO_EVENT_KEY_UP) {
+		switch (ev.keyboard.keycode) {
+		case ALLEGRO_KEY_UP:
+			key[0] = false;
+			break;
+
+		case ALLEGRO_KEY_DOWN:
+			key[1] = false;
+			break;
+
+		case ALLEGRO_KEY_LEFT:
+			key[2] = false;
+			break;
+
+		case ALLEGRO_KEY_RIGHT:
+			key[3] = false;
+			break;
+
+
+		case ALLEGRO_KEY_ESCAPE:
+			doexit = true;
+			break;
+		}
+	}
 	while (1)
 	{
 		ALLEGRO_EVENT ev;
@@ -79,24 +103,24 @@ int main(int argc, char **argv) {
 
 			}
 
-		if (bouncer2_x < 0 || bouncer2_x > 640 - 32) {
-			bouncer2_dx = -bouncer2_dx;
+			if (bouncer2_x < 0 || bouncer2_x > 640 - 32) {
+				bouncer2_dx = -bouncer2_dx;
 
+			}
+			if (bouncer2_y < 0 || bouncer2_y > 480 - 32) {
+				bouncer2_dy = -bouncer2_dy;
+			}
+
+			//really important code!
+			//move the box in a diagonal
+			bouncer_x += bouncer_dx;
+			bouncer_y += bouncer_dy;
+			bouncer2_x += bouncer2_dx;
+			bouncer2_y += bouncer2_dy;
+
+			//if an event happened, you better redraw
+			redraw = true;
 		}
-		if (bouncer2_y < 0 || bouncer2_y > 480 - 32) {
-			bouncer2_dy = -bouncer2_dy;
-		}
-
-		//really important code!
-		//move the box in a diagonal
-		bouncer_x += bouncer_dx;
-		bouncer_y += bouncer_dy;
-		bouncer2_x += bouncer2_dx;
-		bouncer2_y += bouncer2_dy;
-
-		//if an event happened, you better redraw
-		redraw = true;
-	}
 
 		//////////////////////////////////////////////////////////////////
 		//kill program if the user clicks the exit button
@@ -108,20 +132,26 @@ int main(int argc, char **argv) {
 		if (redraw && al_is_event_queue_empty(event_queue)) {
 			redraw = false;
 		}
-			al_clear_to_color(al_map_rgb(0, 0, 0));
+		al_clear_to_color(al_map_rgb(0, 0, 0));
 
-			//here's where the magic happens: draw the square to the screen
-			//at the coordinate position bouncer_x, bouncer_y
-			al_draw_bitmap(bouncer, bouncer_x, bouncer_y, 0);
-			al_draw_bitmap(bouncer2, bouncer2_x, bouncer2_y, 0);
-			al_flip_display();
+		//here's where the magic happens: draw the square to the screen
+		//at the coordinate position bouncer_x, bouncer_y
+		al_draw_bitmap(bouncer, bouncer_x, bouncer_y, 0);
+		al_draw_bitmap(bouncer2, bouncer2_x, bouncer2_y, 0);
+		al_flip_display();
+
+
 		
-	}//end game loop
 
-	al_destroy_bitmap(bouncer);
-	al_destroy_timer(timer);
-	al_destroy_display(display);
-	al_destroy_event_queue(event_queue);
+			}//end game loop
+		
 
-	return 0;
-}
+
+		al_destroy_bitmap(bouncer);
+		al_destroy_timer(timer);
+		al_destroy_display(display);
+		al_destroy_event_queue(event_queue);
+
+		return 0;
+	}
+

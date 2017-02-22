@@ -185,8 +185,9 @@ int main()
 			al_draw_bitmap(player, player_x, player_y, 0);
 
 			//wall 1
-			al_draw_filled_rectangle(100, 100, 300, 200, al_map_rgb(200, 100, 0));
-
+			al_draw_filled_rectangle(100, 200, 300, 350, al_map_rgb(250, 150, 0));
+			al_draw_filled_rectangle(250, 100, 200, 300, al_map_rgb(20, 100, 0));
+			al_draw_filled_rectangle(100, 200, 300, 150, al_map_rgb(250, 10, 0));
 			al_flip_display();
 		}
 	}

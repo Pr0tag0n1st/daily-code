@@ -6,6 +6,7 @@ int main() {
 	int m;
 	double sum;
 	cout << "Would you like to add(a), subtract(s), *(m) or divide(d) ?" << endl;
+	cin >> a;
 	cout << "which two numbers would you like to add?" << endl;
 	cin >> s;
 	cin >> m;

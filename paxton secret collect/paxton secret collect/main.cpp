@@ -78,7 +78,8 @@ int main()
 			//if the up button is pressed AND we're still below the top wall,
 			//move the box "up" by 4 pixels
 			if ((key[0] && player_y >= 0) &&
-				!(player_x > 70 && player_x <298 && player_y <202 && player_y>194))
+
+				!(player_x > 66 && player_x < 302 && player_y > 130 && player_y<350))//alter the y only!
 
 			{
 				player_y -= 4.0;
@@ -86,7 +87,12 @@ int main()
 
 			//if the down button is pressed AND we're still above the bottom wall
 			//move the box "down" by 4 pixels
-			if (key[1] && player_y <= 480 - 32) {
+			if ((key[1] && player_y <= 480 - 32) &&
+				!(player_x > 66 && player_x < 302 && player_y > 118 && player_y<130) &&//red wall
+				!(player_x > 166 && player_x < 250 && player_y > 66 && player_y<78)//green wall
+				)
+
+			{
 				player_y += 4.0;
 			}
 			//if the left button is pressed AND we're still right of the left wall
@@ -99,8 +105,7 @@ int main()
 
 			//if the left button is pressed AND we're still left of the right wall
 			//move the box right by 4 pixels
-			if ((key[3] && player_x <= 640 - 32) &&
-				!(player_x > 66 && player_x <78 && player_y >66 && player_y<198)) {
+			if ((key[3] && player_x <= 640 - 32)) {
 				player_x += 4.0;
 			}
 
@@ -185,9 +190,10 @@ int main()
 			al_draw_bitmap(player, player_x, player_y, 0);
 
 			//wall 1
-			al_draw_filled_rectangle(100, 200, 300, 350, al_map_rgb(250, 150, 0));
-			al_draw_filled_rectangle(250, 100, 200, 300, al_map_rgb(20, 100, 0));
-			al_draw_filled_rectangle(100, 200, 300, 150, al_map_rgb(250, 10, 0));
+			al_draw_filled_rectangle(100, 200, 300, 350, al_map_rgb(250, 150, 0));//yellow
+			al_draw_filled_rectangle(250, 100, 200, 300, al_map_rgb(20, 100, 0));//green
+			al_draw_filled_rectangle(100, 200, 300, 150, al_map_rgb(250, 10, 0));//red
+
 			al_flip_display();
 		}
 	}

@@ -267,3 +267,4 @@ int main()
 
 
 }
+bool collision(b1_x+32<b2_x);

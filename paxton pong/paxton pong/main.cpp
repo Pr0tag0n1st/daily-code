@@ -1,8 +1,13 @@
 #include <stdio.h>
 #include <allegro5/allegro.h>
 #include <iostream>
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_ttf.h>
+#include <allegro5/allegro_audio.h>
+#include <allegro5/allegro_acodec.h>
 #include <allegro5/allegro_primitives.h>
-
+#include <allegro5/allegro_image.h>
+using namespace std;
 bool Collision(int b1x, int b1y, int b2x, int b2y);
 
 int main()
@@ -13,6 +18,8 @@ int main()
 	ALLEGRO_BITMAP *padle2 = NULL;
 	ALLEGRO_BITMAP *ball = NULL;
 	ALLEGRO_DISPLAY *display = NULL;
+	ALLEGRO_BITMAP *image = NULL;
+
 	//here's the bouncer's x and y coordinates on the screen
 	float padle_x = 30;
 	float padle_y = 30;
@@ -23,6 +30,8 @@ int main()
 	float ball_dx = -4.0, ball_dy = 4.0;
 
 	al_init();
+
+	al_init_image_addon();
 
 	al_init_primitives_addon();
 
@@ -53,11 +62,13 @@ int main()
 	/////
 	display = al_create_display(640, 480);
 	////////ball
-	ball = al_create_bitmap(25, 25);
+	ball = al_load_bitmap("potato.jpg");
+	if (ball == NULL)
+		cout << "POOP" << endl;
 
-	al_set_target_bitmap(ball);
+	image = al_load_bitmap("potatoes.jpg");
 
-	al_clear_to_color(al_map_rgb(150, 80, 100));
+	al_clear_to_color(al_map_rgb(255, 255, 255));
 	////
 	padle = al_create_bitmap(180, 32);
 
@@ -92,6 +103,7 @@ int main()
 	//OR the mouse closing the display
 	while (!doexit)
 	{
+		cout << "flag1" << endl;
 		ALLEGRO_EVENT ev;
 		al_wait_for_event(event_queue, &ev);
 
@@ -110,7 +122,7 @@ int main()
 			//move the box right by 4 pixels
 			if (key[1] && padle_x <= 640 - 32) {
 				padle_x += 9.0;
-				.
+				
 			}
 
 			if (ball_x < 0 || ball_x > 640 - 32) {
@@ -141,6 +153,13 @@ int main()
 			//move the box in a diagonal
 			ball_x += ball_dx;
 			ball_y += ball_dy;
+
+			if (Collision( padle_x, padle_y, ball_x, ball_y) == 1)
+				ball_dy = -ball_dy;
+
+			if (Collision(padle2_x, padle2_y, ball_x, ball_y) == 1)
+				ball_dy = -ball_dy;
+
 
 			redraw = true;
 		}
@@ -218,12 +237,15 @@ int main()
 
 			//the algorithm above just changes the x and y coordinates
 			//here's where the bitmap is actually drawn somewhere else
+			al_draw_bitmap(image, 0, 0, 0);
 			al_draw_bitmap(padle, padle_x, padle_y, 0);
 
 			al_draw_bitmap(padle2, padle2_x, padle2_y, 0);
-
+			cout << "flag 2" << endl;
 			al_draw_bitmap(ball, ball_x, ball_y, 0);
-
+			cout << "flag 3";
+			
+			cout << "flag 4";
 			al_flip_display();
 
 		}
@@ -241,9 +263,9 @@ int main()
 }
 bool Collision(int b1x, int b1y, int b2x, int b2y) {
 
-	if ((b1x + 32 < b2x) ||
-		(b1x > b2x + 16) ||
-		(b1y > b2y + 96) ||
+	if ((b1x + 180 < b2x) ||
+		(b1x > b2x + 25) ||
+		(b1y > b2y + 25) ||
 		(b1y + 32 < b2y)
 
 		)

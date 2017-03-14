@@ -62,9 +62,9 @@ int main()
 	/////
 	display = al_create_display(640, 480);
 	////////ball
-	ball = al_load_bitmap("potato.jpg");
+	ball = al_load_bitmap("IronShell.jpg");
 	if (ball == NULL)
-		cout << "POOP" << endl;
+		cout << "WTF" << endl;
 
 	image = al_load_bitmap("potatoes.jpg");
 

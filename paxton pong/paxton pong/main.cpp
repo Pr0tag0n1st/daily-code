@@ -63,6 +63,7 @@ int main()
 	display = al_create_display(640, 480);
 	////////ball
 	ball = al_load_bitmap("IronShell.jpg");
+	al_convert_mask_to_alpha(ball, al_map_rgb(0, 0, 0));
 	if (ball == NULL)
 		cout << "WTF" << endl;
 

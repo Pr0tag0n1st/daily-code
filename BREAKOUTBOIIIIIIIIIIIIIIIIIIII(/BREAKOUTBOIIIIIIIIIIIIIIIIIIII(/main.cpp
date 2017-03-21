@@ -16,7 +16,7 @@ class brick {
 public:
 void initBrick(int x, int y, int w, int h);
 void	draw();
-void IsDead();
+bool IsDead();
 void killBrick();
 void Collision();
 void Brick();
@@ -419,12 +419,24 @@ bool Collision(int b1x, int b1y, int b2x, int b2y) {
 	   void	brick::draw() {
 		   al_draw_filled_rectangle(Xpos, Ypos, Xpos+width,Ypos+height, al_map_rgb(255, 0, 255));
 	   }
-	   void IsDead() {
-
+	   bool brick::IsDead() {
+		   return dead;
 	   }
-	   void killBrick() {
-
+	   void brick::killBrick() {
+		   dead = true;
 	   }
-	   void Collision() {
+	   void brick::Collision(int b1x, int b1y) {
 
+		   if ((b1x + 180 < Xpos) ||
+			   (b1x > Xpos + 25) ||
+			   (b1y > Ypos + 25) ||
+			   (b1y + 32 < Ypos)
+
+			   )
+
+			   return 0;
+		   else {
+			   printf("collision!");
+			   return 1;
+		   }
 	   }

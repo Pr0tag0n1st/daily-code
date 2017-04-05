@@ -14,20 +14,20 @@ bool Collision(int b1x, int b1y, int b2x, int b2y);
 
 class brick {
 public:
-void initBrick(int x, int y, int w, int h);
-void	draw();
-bool IsDead();
-void killBrick();
-void Collision();
-void Brick();
+	void initBrick(int x, int y, int w, int h);
+	void	draw();
+	bool IsDead();
+	void killBrick();
+	bool Collision(int b1x, int b1y);
+	void Brick();
 
-   private:
-	   int Xpos;
-	   int Ypos;
-	   int width;
-	   int height;
-	   bool dead;
-	   int Color;
+private:
+	int Xpos;
+	int Ypos;
+	int width;
+	int height;
+	bool dead;
+	int Color;
 };
 
 
@@ -45,8 +45,8 @@ int main()
 	//here's the bouncer's x and y coordinates on the screen
 	float padle_x = 30;
 	float padle_y = 30;
-	
-	
+
+
 	float ball_x = 90;
 	float ball_y = 90;
 	float ball_dx = -4.0, ball_dy = 4.0;
@@ -125,79 +125,79 @@ int main()
 
 	brick joe;
 	joe.initBrick(20, 365, 50, 30);
-	
+
 	brick slimshady;
 	slimshady.initBrick(80, 365, 50, 30);
-	
+
 	brick hater;
 	hater.initBrick(140, 365, 50, 30);
-	
+
 	brick halo;
 	halo.initBrick(200, 365, 50, 30);
-	
+
 	brick jim;
 	jim.initBrick(260, 365, 50, 30);
-	
+
 	brick coral;
-	coral.initBrick(320, 365, 50, 30); 
-	
+	coral.initBrick(320, 365, 50, 30);
+
 	brick marlin;
-	marlin.initBrick(380, 365, 50, 30); 
-	
+	marlin.initBrick(380, 365, 50, 30);
+
 	brick nemo;
-	nemo.initBrick(440, 365, 50, 30); 
-	
+	nemo.initBrick(440, 365, 50, 30);
+
 	brick dory;
-	dory.initBrick(500, 365, 50, 30); 
-	
+	dory.initBrick(500, 365, 50, 30);
+
 	brick carl;
-	carl.initBrick(560, 365, 50, 30); 
-	
+	carl.initBrick(560, 365, 50, 30);
+
 	brick russel;
 	russel.initBrick(40, 400, 50, 30);
-	
+
 	brick dug;
 	dug.initBrick(100, 400, 50, 30);
-	
+
 	brick kevin;
 	kevin.initBrick(160, 400, 50, 30);
-	
+
 	brick walle;
 	walle.initBrick(220, 400, 50, 30);
-	
+
 	brick eve;
 	eve.initBrick(280, 400, 50, 30);
-	
+
 	brick dash;
 	dash.initBrick(340, 400, 50, 30);
-	
+
 	brick elastagirl;
 	elastagirl.initBrick(400, 400, 50, 30);
-	
+
 	brick violet;
 	violet.initBrick(460, 400, 50, 30);
-	
+
 	brick bob;
 	bob.initBrick(520, 400, 50, 30);
-	
+
 	brick frozone;
 	frozone.initBrick(20, 435, 50, 30);
-	
+
 	brick syndrome;
 	syndrome.initBrick(80, 435, 50, 30);
-	
+
 	brick killa;
 	killa.initBrick(140, 435, 50, 30);
-	
+
 	brick outcast;
 	outcast.initBrick(200, 435, 50, 30);
-	
+
 	brick billybob;
 	billybob.initBrick(260, 435, 50, 30);
-	
+
 	brick carmando;
 	carmando.initBrick(320, 435, 50, 30);
-	
+
 	brick mike;
 	mike.initBrick(380, 435, 50, 30);
 
@@ -206,7 +206,7 @@ int main()
 
 	brick randal;
 	randal.initBrick(500, 435, 50, 30);
-	
+
 	brick boo;
 	boo.initBrick(560, 435, 50, 30);
 	//so the game loop is set to act on "ticks" of the timer OR keyboard presses 
@@ -240,16 +240,13 @@ int main()
 				ball_dx = -ball_dx;
 			}
 
-			//redraw at every tick of the timer
-			redraw = true;
 
-		
 			//if the box hits the top wall OR the bottom wall
 			if (ball_y < 0 || ball_y > 480 - 32) {
 				//flip the y direction
 				ball_dy = -ball_dy;
 			}
-			
+
 			//really important code!
 			//move the box in a diagonal
 			ball_x += ball_dx;
@@ -257,7 +254,181 @@ int main()
 
 			if (Collision(padle_x, padle_y, ball_x, ball_y) == 1)
 				ball_dy = -ball_dy;
+			
+			//brick collision
+			if ((joe.Collision(ball_x, ball_y) == 1)&&(joe.IsDead() !=1)) {
+				ball_dy = -ball_dy;
+				joe.killBrick();
+				//Wacky sound effect goes here
+			}
 
+			if ((joe.Collision(ball_x, ball_y) == 1) && (joe.IsDead() != 1)) {
+				ball_dy = -ball_dy;
+				billybob.killBrick();
+				//Wacky sound effect goes here
+			}
+
+			if ((joe.Collision(ball_x, ball_y) == 1) && (joe.IsDead() != 1)) {
+				ball_dy = -ball_dy;
+				carmando.killBrick();
+				//Wacky sound effect goes here
+			}
+
+			if ((joe.Collision(ball_x, ball_y) == 1) && (joe.IsDead() != 1)) {
+				ball_dy = -ball_dy;
+				slimshady.killBrick();
+				//Wacky sound effect goes here
+			}
+
+			if ((joe.Collision(ball_x, ball_y) == 1) && (joe.IsDead() != 1)) {
+				ball_dy = -ball_dy;
+				outcast.killBrick();
+				//Wacky sound effect goes here
+			}
+
+			if ((joe.Collision(ball_x, ball_y) == 1) && (joe.IsDead() != 1)) {
+				ball_dy = -ball_dy;
+				killa.killBrick();
+				//Wacky sound effect goes here
+			}
+
+			if ((joe.Collision(ball_x, ball_y) == 1) && (joe.IsDead() != 1)) {
+				ball_dy = -ball_dy;
+				hater.killBrick();
+				//Wacky sound effect goes here
+			}
+
+			if ((joe.Collision(ball_x, ball_y) == 1) && (joe.IsDead() != 1)) {
+				ball_dy = -ball_dy;
+				halo.killBrick();
+				//Wacky sound effect goes here
+			}
+
+			if ((joe.Collision(ball_x, ball_y) == 1) && (joe.IsDead() != 1)) {
+				ball_dy = -ball_dy;
+				jim.killBrick();
+				//Wacky sound effect goes here
+			}
+
+			if ((joe.Collision(ball_x, ball_y) == 1) && (joe.IsDead() != 1)) {
+				ball_dy = -ball_dy;
+				coral.killBrick();
+				//Wacky sound effect goes here
+			}
+
+			if ((joe.Collision(ball_x, ball_y) == 1) && (joe.IsDead() != 1)) {
+				ball_dy = -ball_dy;
+				marlin.killBrick();
+				//Wacky sound effect goes here
+			}
+
+			if ((joe.Collision(ball_x, ball_y) == 1) && (joe.IsDead() != 1)) {
+				ball_dy = -ball_dy;
+				nemo.killBrick();
+				//Wacky sound effect goes here
+			}
+
+			if ((joe.Collision(ball_x, ball_y) == 1) && (joe.IsDead() != 1)) {
+				ball_dy = -ball_dy;
+				dory.killBrick();
+				//Wacky sound effect goes here
+			}
+
+			if ((joe.Collision(ball_x, ball_y) == 1) && (joe.IsDead() != 1)) {
+				ball_dy = -ball_dy;
+				carl.killBrick();
+				//Wacky sound effect goes here
+			}
+
+			if ((joe.Collision(ball_x, ball_y) == 1) && (joe.IsDead() != 1)) {
+				ball_dy = -ball_dy;
+				russel.killBrick();
+				//Wacky sound effect goes here
+			}
+
+			if ((joe.Collision(ball_x, ball_y) == 1) && (joe.IsDead() != 1)) {
+				ball_dy = -ball_dy;
+				dug.killBrick();
+				//Wacky sound effect goes here
+			}
+
+			if ((joe.Collision(ball_x, ball_y) == 1) && (joe.IsDead() != 1)) {
+				ball_dy = -ball_dy;
+				kevin.killBrick();
+				//Wacky sound effect goes here
+			}
+
+			if ((joe.Collision(ball_x, ball_y) == 1) && (joe.IsDead() != 1)) {
+				ball_dy = -ball_dy;
+				walle.killBrick();
+				//Wacky sound effect goes here
+			}
+
+			if ((joe.Collision(ball_x, ball_y) == 1) && (joe.IsDead() != 1)) {
+				ball_dy = -ball_dy;
+				eve.killBrick();
+				//Wacky sound effect goes here
+			}
+
+			if ((joe.Collision(ball_x, ball_y) == 1) && (joe.IsDead() != 1)) {
+				ball_dy = -ball_dy;
+				dash.killBrick();
+				//Wacky sound effect goes here
+			}
+
+			if ((joe.Collision(ball_x, ball_y) == 1) && (joe.IsDead() != 1)) {
+				ball_dy = -ball_dy;
+				elastagirl.killBrick();
+				//Wacky sound effect goes here
+			}
+
+			if ((joe.Collision(ball_x, ball_y) == 1) && (joe.IsDead() != 1)) {
+				ball_dy = -ball_dy;
+				violet.killBrick();
+				//Wacky sound effect goes here
+			}
+
+			if ((joe.Collision(ball_x, ball_y) == 1) && (joe.IsDead() != 1)) {
+				ball_dy = -ball_dy;
+				bob.killBrick();
+				//Wacky sound effect goes here
+			}
+
+			if ((joe.Collision(ball_x, ball_y) == 1) && (joe.IsDead() != 1)) {
+				ball_dy = -ball_dy;
+				frozone.killBrick();
+				//Wacky sound effect goes here
+			}
+
+			if ((joe.Collision(ball_x, ball_y) == 1) && (joe.IsDead() != 1)) {
+				ball_dy = -ball_dy;
+				syndrome.killBrick();
+				//Wacky sound effect goes here
+			}
+
+			if ((joe.Collision(ball_x, ball_y) == 1) && (joe.IsDead() != 1)) {
+				ball_dy = -ball_dy;
+				mike.killBrick();
+				//Wacky sound effect goes here
+			}
+
+			if ((joe.Collision(ball_x, ball_y) == 1) && (joe.IsDead() != 1)) {
+				ball_dy = -ball_dy;
+				sully.killBrick();
+				//Wacky sound effect goes here
+			}
+
+			if ((joe.Collision(ball_x, ball_y) == 1) && (joe.IsDead() != 1)) {
+				ball_dy = -ball_dy;
+				randal.killBrick();
+				//Wacky sound effect goes here
+			}
+
+			if ((joe.Collision(ball_x, ball_y) == 1) && (joe.IsDead() != 1)) {
+				ball_dy = -ball_dy;
+				boo.killBrick();
+				//Wacky sound effect goes here
+			}
 
 			redraw = true;
 		}
@@ -338,39 +509,65 @@ int main()
 			al_draw_bitmap(image, 0, 0, 0);
 			al_draw_bitmap(padle, padle_x, padle_y, 0);
 
-			
 			al_draw_bitmap(ball, ball_x, ball_y, 0);
 
-
-
-			joe.draw();
+			if (joe.IsDead() == false)
+				joe.draw();
+			if (billybob.IsDead() == false)
 			billybob.draw();
+			if (carmando.IsDead() == false)
 			carmando.draw();
+			if (slimshady.IsDead() == false)
 			slimshady.draw();
+			if (outcast.IsDead() == false)
 			outcast.draw();
+			if (killa.IsDead() == false)
 			killa.draw();
+			if (hater.IsDead() == false)
 			hater.draw();
+			if (halo.IsDead() == false)
 			halo.draw();
+			if (jim.IsDead() == false)
 			jim.draw();
+			if (coral.IsDead() == false)
 			coral.draw();
+			if (marlin.IsDead() == false)
 			marlin.draw();
+			if (nemo.IsDead() == false)
 			nemo.draw();
+			if (dory.IsDead() == false)
 			dory.draw();
+			if (carl.IsDead() == false)
 			carl.draw();
+			if (russel.IsDead() == false)
 			russel.draw();
+			if (dug.IsDead() == false)
 			dug.draw();
+			if (kevin.IsDead() == false)
 			kevin.draw();
+			if (walle.IsDead() == false)
 			walle.draw();
+			if (eve.IsDead() == false)
 			eve.draw();
+			if (dash.IsDead() == false)
 			dash.draw();
+			if (elastagirl.IsDead() == false)
 			elastagirl.draw();
+			if (violet.IsDead() == false)
 			violet.draw();
+			if (bob.IsDead() == false)
 			bob.draw();
+			if (frozone.IsDead() == false)
 			frozone.draw();
+			if (syndrome.IsDead() == false)
 			syndrome.draw();
+			if (mike.IsDead() == false)
 			mike.draw();
+			if (sully.IsDead() == false)
 			sully.draw();
+			if (randal.IsDead() == false)
 			randal.draw();
+			if (boo.IsDead() == false)
 			boo.draw();
 
 			cout << "flag 3";
@@ -382,7 +579,7 @@ int main()
 	}//end game loop
 
 	al_destroy_bitmap(padle);
-	
+
 	al_destroy_bitmap(ball);
 	al_destroy_timer(timer);
 	al_destroy_display(display);
@@ -407,36 +604,41 @@ bool Collision(int b1x, int b1y, int b2x, int b2y) {
 	}
 }
 
-	   void brick::initBrick(int x, int y, int w, int h) {
-		Xpos=x;
-	    Ypos=y;
-		width=w;
-	    height=h;
-		dead=false;
+void brick::initBrick(int x, int y, int w, int h) {
+	Xpos = x;
+	Ypos = y;
+	width = w;
+	height = h;
+	dead = false;
 
 
-	   }
-	   void	brick::draw() {
-		   al_draw_filled_rectangle(Xpos, Ypos, Xpos+width,Ypos+height, al_map_rgb(255, 0, 255));
-	   }
-	   bool brick::IsDead() {
-		   return dead;
-	   }
-	   void brick::killBrick() {
-		   dead = true;
-	   }
-	   void brick::Collision(int b1x, int b1y) {
+}
+void	brick::draw() {
+	al_draw_filled_rectangle(Xpos, Ypos, Xpos + width, Ypos + height, al_map_rgb(255, 0, 255));
+}
+bool brick::IsDead() {
+	return dead;
+}
+void brick::killBrick() {
+	dead = true;
+}
 
-		   if ((b1x + 180 < Xpos) ||
-			   (b1x > Xpos + 25) ||
-			   (b1y > Ypos + 25) ||
-			   (b1y + 32 < Ypos)
 
-			   )
+bool brick::Collision(int b1x, int b1y) {
 
-			   return 0;
-		   else {
-			   printf("collision!");
-			   return 1;
-		   }
-	   }
+	if ((b1x + 32 < Xpos) ||
+		(b1x > Xpos + 50) ||
+		(b1y > Ypos + 30) ||
+		(b1y + 32 < Ypos)
+
+		)
+
+		return 0;
+	else {
+		printf("collision!");
+		return 1;
+	}
+}
+void brick::Brick() {
+
+}
